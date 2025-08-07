@@ -8,11 +8,11 @@ on:
 env:
   REGISTRY_USER: rh-ee-chbutler
   IMAGE_REGISTRY: quay.io
-  IMAGE: rhel-dev-arm
+  IMAGE: fedora-bootc-dashboard
 
 jobs:
   testbuild:
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     container:
       image: registry.access.redhat.com/ubi9/ubi
       options: --privileged    

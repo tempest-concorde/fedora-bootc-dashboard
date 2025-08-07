@@ -7,12 +7,12 @@ on:
 env:
   REGISTRY_USER: rh-ee-chbutler
   IMAGE_REGISTRY: quay.io
-  IMAGE: rhel-dev-arm
+  IMAGE: fedora-bootc-dashboard
 jobs:
   buildlatest:
     name: Build Bootc image with repo access
 
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-24.04
     container:
       image: registry.access.redhat.com/ubi9/ubi
       options: --privileged    
@@ -26,12 +26,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Access a subscription via activation key
-      env:
-        SMDEV_CONTAINER_OFF: 1
-        orgid: ${{ secrets.RHT_ORGID }}
-        activation_key: ${{ secrets.RHT_ACT_KEY }}
-      run: subscription-manager register --org=$orgid --activationkey=$activation_key
+    # - name: Access a subscription via activation key
+    #   env:
+    #     SMDEV_CONTAINER_OFF: 1
+    #     orgid: ${{ secrets.RHT_ORGID }}
+    #     activation_key: ${{ secrets.RHT_ACT_KEY }}
+    #   run: subscription-manager register --org=$orgid --activationkey=$activation_key
     - name: Workaround open podman-login action issue
       env:
         auth: "{ \"auths\": {} }"
@@ -47,13 +47,13 @@ jobs:
         registry: ${{ env.IMAGE_REGISTRY }}
         auth_file_path: /run/containers/0/auth.json
 
-    - name: Log in to registry.redhat.io
-      uses: redhat-actions/podman-login@v1
-      with:
-        username: ${{ secrets.RH_REGISTRY_USER }} # service account
-        password: ${{ secrets.RH_REGISTRY_PASSWORD }} # service accounts
-        registry: registry.redhat.io
-        auth_file_path: /run/containers/0/auth.json
+    # - name: Log in to registry.redhat.io
+    #   uses: redhat-actions/podman-login@v1
+    #   with:
+    #     username: ${{ secrets.RH_REGISTRY_USER }} # service account
+    #     password: ${{ secrets.RH_REGISTRY_PASSWORD }} # service accounts
+    #     registry: registry.redhat.io
+    #     auth_file_path: /run/containers/0/auth.json
     - name: Pull deps
       run: make get-deps
 
@@ -65,7 +65,7 @@ jobs:
         tags: latest ${{ github.sha }}
         containerfiles: |
          ./Containerfile
-    - name: Clean up the subscription
-      env:
-        SMDEV_CONTAINER_OFF: 1
-      run: subscription-manager unregister
+    # - name: Clean up the subscription
+    #   env:
+    #     SMDEV_CONTAINER_OFF: 1
+    #   run: subscription-manager unregister
