@@ -13,21 +13,33 @@ This project creates a bootc-based system that automatically boots into a Firefo
 
 ## Features
 
-- **Kiosk Mode**: Firefox runs in full-screen mode with minimal UI
+- **Dual-Tab Kiosk Mode**: Firefox runs in full-screen mode displaying two tabs
 - **Auto-login**: System automatically logs into the kiosk user account
-- **Configurable URL**: Set the webpage to display via environment variable
+- **Configurable URLs**: Set both webpages to display via environment variables
 - **Scheduled Shutdown**: Automatically powers off at 22:00 each day
 - **Security**: Disabled downloads, extensions, and developer tools
 - **Performance**: Optimized Firefox settings for kiosk displays
 
 ## Configuration
 
-### Setting the Kiosk URL
+### Setting the Kiosk URLs
 
-The default webpage is https://www.redhat.com. To change this, set the `KIOSK_URL` environment variable during build or runtime:
+The kiosk displays two tabs by default:
+- **Tab 1**: https://www.redhat.com
+- **Tab 2**: https://fedoraproject.org
+
+To customize the URLs, set the environment variables during build or runtime:
 
 ```shell
-export KIOSK_URL=https://your-webpage.com
+export KIOSK_URL_1=https://your-first-webpage.com
+export KIOSK_URL_2=https://your-second-webpage.com
+```
+
+For backward compatibility, `KIOSK_URL` is also supported and will override the first tab:
+
+```shell
+export KIOSK_URL=https://your-webpage.com  # Sets first tab
+export KIOSK_URL_2=https://your-second-webpage.com  # Sets second tab
 ```
 
 ### Build Environment Setup
@@ -57,8 +69,8 @@ Using `direnv` or similar to manage the secrets is encouraged.
 
 1. **Install**: Kickstart creates kiosk user and configures auto-login during installation
 2. **Boot**: System boots and automatically logs into the `kiosk` user
-3. **Launch**: Firefox automatically starts in kiosk mode showing the configured webpage
-4. **Display**: Full-screen display with minimal browser UI
+3. **Launch**: Firefox automatically starts in kiosk mode showing two configured webpages in tabs
+4. **Display**: Full-screen display with tab bar visible for easy navigation between content
 5. **Shutdown**: System automatically powers off at 22:00 daily
 
 ## Kiosk User Account
@@ -80,11 +92,12 @@ Using `direnv` or similar to manage the secrets is encouraged.
 
 The kiosk Firefox instance includes:
 - Disabled updates and notifications
-- No toolbars or bookmarks visible
+- No toolbars or bookmarks visible (tabs remain visible for navigation)
 - Disabled right-click context menu
 - Disabled developer tools
 - Optimized performance settings
 - Disabled downloads and extensions
+- Two-tab configuration with controlled navigation
 
 ## Bootc-Specific Features
 
