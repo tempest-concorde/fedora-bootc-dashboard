@@ -28,16 +28,8 @@ toml:
 iso: toml get-deps
 	rm -rf output
 	mkdir output
-	podman pull quay.io/rh-ee-chbutler/rhel-dev-arm:latest
-	podman pull registry.redhat.io/rhel10/bootc-image-builder:latest
-	podman run --rm -it --privileged --pull=newer --security-opt label=type:unconfined_t -v /var/lib/containers/storage:/var/lib/containers/storage -v $(CURDIR)/config.toml:/config.toml -v $(CURDIR)/output:/output registry.redhat.io/rhel10/bootc-image-builder:latest --type iso quay.io/rh-ee-chbutler/rhel-dev-arm:latest
-
-
-qcow: toml get-deps
-	rm -rf output
-	mkdir output
-	podman pull quay.io/rh-ee-chbutler/rhel-dev-arm:latest
-	podman pull registry.redhat.io/rhel10/bootc-image-builder:latest
+	podman pull quay.io/rh-ee-chbutler/fedora-bootc-dashboard:latest
+	podman pull quay.io/centos-bootc/bootc-image-builder:latest
 	podman run \
 			--rm \
 			-it \
@@ -47,7 +39,26 @@ qcow: toml get-deps
 			-v $(CURDIR)/config.toml:/config.toml:ro \
 			-v $(CURDIR)/output:/output \
 			-v /var/lib/containers/storage:/var/lib/containers/storage \
-			registry.redhat.io/rhel10/bootc-image-builder:latest \
+			quay.io/centos-bootc/bootc-image-builder:latest \
+			--type iso \
+			quay.io/rh-ee-chbutler/fedora-bootc-dashboard:latest
+
+
+qcow: toml get-deps
+	rm -rf output
+	mkdir output
+	podman pull quay.io/rh-ee-chbutler/fedora-bootc-dashboard:latest
+	podman pull quay.io/centos-bootc/bootc-image-builder:latest
+	podman run \
+			--rm \
+			-it \
+			--privileged \
+			--pull=newer \
+			--security-opt label=type:unconfined_t \
+			-v $(CURDIR)/config.toml:/config.toml:ro \
+			-v $(CURDIR)/output:/output \
+			-v /var/lib/containers/storage:/var/lib/containers/storage \
+			quay.io/centos-bootc/bootc-image-builder:latest \
 			--local \
 			--type qcow2 \
-			quay.io/rh-ee-chbutler/rhel-dev-arm:latest
+		  quay.io/rh-ee-chbutler/fedora-bootc-dashboard:latest
