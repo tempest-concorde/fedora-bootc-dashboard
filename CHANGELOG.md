@@ -1,128 +1,35 @@
 # CHANGELOG
 
-## v0.2.3 (2025-08-06)
-
-### Fix
-
-* fix: password_hash
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`cf47600`](https://github.com/tempest-concorde/rhel-dev-arm/commit/cf476000b23a205101c59064d74e708ea40b16d6))
-
-## v0.2.2 (2025-08-06)
-
-### Chore
-
-* chore: simplify
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`eb33f28`](https://github.com/tempest-concorde/rhel-dev-arm/commit/eb33f28375d662d107ec9457b181b285f8311144))
-
-* chore: externalize user config
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`7f15805`](https://github.com/tempest-concorde/rhel-dev-arm/commit/7f15805bceabbcf38127ee907713e69599c0ea63))
-
-### Fix
-
-* fix: update with sdvs example
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`49e0e34`](https://github.com/tempest-concorde/rhel-dev-arm/commit/49e0e347e8b94ec7b2b73f18137d1c5dccedbc8d))
-
-## v0.2.1 (2025-08-05)
-
-### Chore
-
-* chore: update toml
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`2dc8507`](https://github.com/tempest-concorde/rhel-dev-arm/commit/2dc8507d4f12f9de5a9e4f9bb8e521b68702f432))
-
-* chore: update config toml
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`4155241`](https://github.com/tempest-concorde/rhel-dev-arm/commit/4155241f673150e90430daf2ddbecabdcd20a3f8))
-
-* chore: update config toml
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`4476f81`](https://github.com/tempest-concorde/rhel-dev-arm/commit/4476f8185e1bd81749f7823c21dd002d220d45da))
-
-* chore: wrapping toml
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`0056689`](https://github.com/tempest-concorde/rhel-dev-arm/commit/0056689fd1e880c296d7eda9da3914f2857442b6))
-
-* chore: remove root check
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`431ca78`](https://github.com/tempest-concorde/rhel-dev-arm/commit/431ca7862ebdeea161cdc7c52ff686abfe9af64d))
-
-* chore: correct make syntax
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`4aad606`](https://github.com/tempest-concorde/rhel-dev-arm/commit/4aad606523f8411621e9728d437142e6fbc71ea1))
-
-* chore: add qcow make file
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`58fccac`](https://github.com/tempest-concorde/rhel-dev-arm/commit/58fccacc39f0c97c9c46c0724132599042a18f5e))
-
-### Fix
-
-* fix: simplify
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`a829b0e`](https://github.com/tempest-concorde/rhel-dev-arm/commit/a829b0eb646b411735b49f1ca252c205f9d4c950))
-
-## v0.2.0 (2025-08-04)
+## v0.1.0 (2025-08-08)
 
 ### Feature
 
-* feat: fix token workflow (#4)
+* feat: strip out user auth
 
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`cfda23f`](https://github.com/tempest-concorde/rhel-dev-arm/commit/cfda23f09b9f3b01c9762a8cb7b2803bc966df84))
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`9daf99b`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/9daf99b4eb76190296299e615a4dd32efc39f391))
 
-## v0.1.0 (2025-08-04)
+* feat: cleanup deps
 
-### Feature
-
-* feat: update process to ensure updates (#2)
-
-* feat: update process to ensure updates
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
-
-* fix: manually install epel
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
-
-* fix: manually install direnv
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
-
-* fix: manually install direnv
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
-
----------
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`3a6f468`](https://github.com/tempest-concorde/rhel-dev-arm/commit/3a6f468579b3c74cee2f5b876c6a3926ec59d53f))
-
-* feat: initial build (#1)
-
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`47dee46`](https://github.com/tempest-concorde/rhel-dev-arm/commit/47dee465b958d85ed5e86a7e9603322c88b7c117))
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`9fd7ae9`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/9fd7ae93b2897e1f0bd5f445b84f4325d1cb9e46))
 
 ### Fix
 
-* fix: stuff (#3)
+* fix: clean up deps
 
-* fix: stuff
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`9e3959e`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/9e3959e02e03abe0503eeb9cdc7f0a3e91311ed2))
 
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+* fix: update stuff
 
-* fix: add direnv correctly
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`1257dd6`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/1257dd667cac4ec687b0a3e1a6e966f4a1d4ad2e))
 
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+* fix: update release
 
----------
-
-Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`0fb9d33`](https://github.com/tempest-concorde/rhel-dev-arm/commit/0fb9d33f14c9b45958869341d46061c5944b5b06))
-
-* fix: dependabot.yml
-
-Signed-off-by: Chris Butler &lt;chris@thebutlers.me&gt; ([`7f03823`](https://github.com/tempest-concorde/rhel-dev-arm/commit/7f038239ada6dc1b9221e3d92b7abfc4178b477e))
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`1cbc4ec`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/1cbc4ec4aef1a3e5d50c9e2d2013c23e3469b83c))
 
 ### Unknown
 
-* Initial commit ([`117528d`](https://github.com/tempest-concorde/rhel-dev-arm/commit/117528de645d131757eb053c7403fe40949c9d81))
+* Merge pull request #1 from tempest-concorde/init
+
+feat: initial code drop ([`0eb68f6`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/0eb68f6cb99bb62f374bee1f93d7cc48e45c63d0))
+
+* first commit ([`e1df40d`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/e1df40db4953d71408eae739a86851ba953d32d4))
