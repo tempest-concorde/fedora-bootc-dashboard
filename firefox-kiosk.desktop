@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Firefox Kiosk
+Comment=Launch Firefox in kiosk mode
+Exec=/usr/local/bin/firefox-kiosk.sh
+Icon=firefox
+Terminal=false
+Categories=Network;WebBrowser;
+StartupNotify=true
+X-GNOME-Autostart-enabled=true

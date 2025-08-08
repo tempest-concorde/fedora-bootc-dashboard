@@ -1,0 +1,55 @@
+[customizations.installer.kickstart]
+contents = """
+graphical
+lang en_US.UTF-8
+keyboard us
+timezone UTC
+network --bootproto=dhcp --device=link --activate --onboot=on --hostname=bootc
+zerombr
+
+autopart --type=plain
+
+# https://docs.fedoraproject.org/en-US/fedora/f36/install-guide/appendixes/Kickstart_Syntax_Reference/#sect-kickstart-commands-users-groups
+# Generate an ssh key using the command `openssl passwd -6`
+
+
+
+
+rootpw --lock
+group --name={{ env.Getenv "USERNAME" }} --gid=1000
+user --name {{ env.Getenv "USERNAME" }} --uid=1000 --gid=1000  --shell=/bin/bash --groups=wheel --password='{{ env.Getenv "PASSWORD_HASH" }}' --iscrypted
+group --name=kiosk --gid=1001
+user --name kiosk --uid=1001 --gid=1001 --shell=/bin/bash --homedir=/var/home/kiosk
+sshkey --username="{{ env.Getenv "USERNAME" }}" "{{ strings.TrimSpace (file.Read (env.Getenv "SSH_KEY_PATH")) }}"
+sshkey --username=root "{{ strings.TrimSpace (file.Read (env.Getenv "SSH_KEY_PATH")) }}"
+
+%post
+# Setup ostree authentication
+mkdir -p /etc/ostree
+cat > /etc/ostree/auth.json << 'EOF'
+{{ file.Read (env.Getenv "DOCKER_AUTH_PATH") }}
+EOF
+
+# Setup kiosk user home directory and permissions
+mkdir -p /var/home/kiosk/.config/autostart
+mkdir -p /var/home/kiosk/.mozilla/firefox
+chown -R kiosk:kiosk /var/home/kiosk
+
+# Configure GDM for auto-login to kiosk user
+mkdir -p /etc/gdm
+cat > /etc/gdm/custom.conf << 'EOF'
+[daemon]
+AutomaticLoginEnable=True
+AutomaticLogin=kiosk
+EOF
+
+# Ensure systemd services are enabled
+systemctl enable gdm
+systemctl enable shutdown-timer.timer
+systemctl enable chronyd
+
+%end
+
+reboot --eject
+
+"""
