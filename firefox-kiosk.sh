@@ -13,25 +13,42 @@ if [ -n "${KIOSK_URL}" ] && [ "${KIOSK_URL}" != "https://www.redhat.com" ]; then
 fi
 
 # Wait for the desktop environment to be ready
-sleep 10
+sleep 15
 
 # Ensure DISPLAY is set
 export DISPLAY="${DISPLAY:-:0}"
 
-# Wait for X server to be ready
-while ! xset q &>/dev/null; do
-    echo "Waiting for X server..."
+# Wait for X server to be ready with timeout
+echo "Waiting for X server to be ready..."
+timeout=60
+while [ $timeout -gt 0 ] && ! xset q &>/dev/null; do
+    echo "X server not ready, waiting... ($timeout seconds left)"
     sleep 2
+    timeout=$((timeout-2))
 done
 
-# Wait for GNOME to be ready
-while ! pgrep -x gnome-shell &>/dev/null; do
-    echo "Waiting for GNOME Shell..."
+if [ $timeout -le 0 ]; then
+    echo "ERROR: X server failed to start within 60 seconds"
+    exit 1
+fi
+
+# Wait for GNOME to be ready with timeout
+echo "Waiting for GNOME Shell to be ready..."
+timeout=60
+while [ $timeout -gt 0 ] && ! pgrep -x gnome-shell &>/dev/null; do
+    echo "GNOME Shell not ready, waiting... ($timeout seconds left)"
     sleep 2
+    timeout=$((timeout-2))
 done
+
+if [ $timeout -le 0 ]; then
+    echo "ERROR: GNOME Shell failed to start within 60 seconds"
+    exit 1
+fi
 
 # Additional wait for desktop to fully load
-sleep 5
+echo "Desktop environment ready, waiting for full initialization..."
+sleep 10
 
 # Disable screen saver and power management
 xset s off
