@@ -2,15 +2,15 @@ FROM quay.io/fedora/fedora-bootc:42
 # Install packages for Firefox kiosk setup
 
 RUN dnf install -y gnome-shell gnome-kiosk gnome-kiosk-script-session \
-firefox unzip alsa-sof-firmware python python-pip gcc python-devel \
-xorg-x11-xinit gdm systemd-timesyncd at && \
-dnf clean all
+    firefox unzip alsa-sof-firmware python python-pip gcc python-devel \
+    xorg-x11-xinit gdm systemd-timesyncd at && \
+    dnf clean all
 
 # Note: kiosk user and GDM autologin configuration handled by kickstart
 
 # Create template directories for kiosk configuration (ownership set by kickstart)
 RUN mkdir -p /var/home/kiosk/.config/autostart && \
-mkdir -p /var/home/kiosk/.mozilla/firefox
+    mkdir -p /var/home/kiosk/.mozilla/firefox
 
 # Copy Firefox kiosk configuration to bootc home directory
 COPY firefox-kiosk.desktop /var/home/kiosk/.config/autostart/
