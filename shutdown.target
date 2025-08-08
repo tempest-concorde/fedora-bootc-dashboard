@@ -1,0 +1,8 @@
+[Unit]
+Description=Custom shutdown target for kiosk system
+Requires=poweroff.target
+After=poweroff.target
+AllowIsolate=yes
+
+[Install]
+WantedBy=multi-user.target
