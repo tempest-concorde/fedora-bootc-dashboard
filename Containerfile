@@ -30,6 +30,9 @@ COPY firefox-kiosk.service /etc/systemd/user/
 COPY firefox-watchdog.sh /usr/local/bin/
 COPY firefox-watchdog.service /etc/systemd/system/
 COPY firefox-watchdog.timer /etc/systemd/system/
+COPY kiosk-manager.service /etc/systemd/system/
+COPY kiosk-manager.sh /usr/local/bin/
+COPY kiosk-debug.sh /usr/local/bin/
 
 # Copy GDM configuration
 COPY gdm-custom.conf /etc/gdm/custom.conf
@@ -38,14 +41,21 @@ COPY gdm-custom.conf /etc/gdm/custom.conf
 RUN mkdir -p /etc/dconf/db/gdm.d
 COPY 00-login-screen /etc/dconf/db/gdm.d/
 
+# Copy screen lock disable configuration
+RUN mkdir -p /etc/dconf/db/local.d
+COPY disable-screen-lock.conf /etc/dconf/db/local.d/
+
 # Set permissions for scripts and enable services
 RUN chmod +x /usr/local/bin/firefox-kiosk.sh && \
 chmod +x /usr/local/bin/kiosk-session.sh && \
 chmod +x /usr/local/bin/firefox-watchdog.sh && \
+chmod +x /usr/local/bin/kiosk-manager.sh && \
+chmod +x /usr/local/bin/kiosk-debug.sh && \
 systemctl enable gdm && \
 systemctl enable shutdown-timer.timer && \
 systemctl enable chronyd && \
 systemctl enable firefox-watchdog.timer && \
+systemctl enable kiosk-manager.service && \
 systemctl enable sshd && \
 dconf update
 

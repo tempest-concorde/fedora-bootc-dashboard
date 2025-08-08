@@ -1,0 +1,14 @@
+[Unit]
+Description=Kiosk Manager - Ensures Firefox Kiosk is Running
+After=gdm.service graphical.target
+Wants=graphical.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/kiosk-manager.sh
+Restart=always
+RestartSec=30
+User=root
+
+[Install]
+WantedBy=graphical.target

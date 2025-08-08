@@ -1,19 +1,19 @@
 [Unit]
-Description=Firefox Kiosk Mode
+Description=Firefox Kiosk Mode for User Session
 After=graphical-session.target
 Wants=graphical-session.target
 
 [Service]
 Type=simple
-ExecStartPre=/bin/sleep 10
+ExecStartPre=/bin/sleep 20
 ExecStart=/usr/local/bin/firefox-kiosk.sh
 Restart=always
-RestartSec=5
-User=kiosk
-Group=kiosk
+RestartSec=10
 Environment=DISPLAY=:0
 Environment=KIOSK_URL_1=https://www.redhat.com
 Environment=KIOSK_URL_2=https://fedoraproject.org
+Environment=HOME=/var/home/kiosk
+Environment=XDG_RUNTIME_DIR=/run/user/1001
 
 [Install]
-WantedBy=graphical-session.target
+WantedBy=default.target
