@@ -1,6 +1,6 @@
 
 
-get-deps: get_node get_vma get-direnv
+get-deps:
 	echo "Not implemented"
 
 dev:
