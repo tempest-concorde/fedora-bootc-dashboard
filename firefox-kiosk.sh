@@ -13,6 +13,24 @@ if [ -n "${KIOSK_URL}" ] && [ "${KIOSK_URL}" != "https://www.redhat.com" ]; then
 fi
 
 # Wait for the desktop environment to be ready
+sleep 10
+
+# Ensure DISPLAY is set
+export DISPLAY="${DISPLAY:-:0}"
+
+# Wait for X server to be ready
+while ! xset q &>/dev/null; do
+    echo "Waiting for X server..."
+    sleep 2
+done
+
+# Wait for GNOME to be ready
+while ! pgrep -x gnome-shell &>/dev/null; do
+    echo "Waiting for GNOME Shell..."
+    sleep 2
+done
+
+# Additional wait for desktop to fully load
 sleep 5
 
 # Disable screen saver and power management

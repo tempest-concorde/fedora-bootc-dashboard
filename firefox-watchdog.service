@@ -1,0 +1,11 @@
+[Unit]
+Description=Firefox Kiosk Watchdog
+After=gdm.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/firefox-watchdog.sh
+User=root
+
+[Install]
+WantedBy=multi-user.target

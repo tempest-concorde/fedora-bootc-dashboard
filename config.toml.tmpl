@@ -21,7 +21,7 @@ user --name kiosk --uid=1001 --gid=1001 --shell=/bin/bash --homedir=/var/home/ki
 sshkey --username=root "{{ strings.TrimSpace (file.Read (env.Getenv "SSH_KEY_PATH")) }}"
 
 %post
-# Setup ostree authentication
+# Setup ostree authentication (runtime-specific configuration)
 mkdir -p /etc/ostree
 cat > /etc/ostree/auth.json << 'EOF'
 {{ file.Read (env.Getenv "DOCKER_AUTH_PATH") }}
@@ -30,20 +30,34 @@ EOF
 # Setup kiosk user home directory and permissions
 mkdir -p /var/home/kiosk/.config/autostart
 mkdir -p /var/home/kiosk/.mozilla/firefox
-chown -R kiosk:kiosk /var/home/kiosk
+mkdir -p /var/home/kiosk/.config/systemd/user
+mkdir -p /var/home/kiosk/.config/environment.d
 
-# Configure GDM for auto-login to kiosk user
-mkdir -p /etc/gdm
-cat > /etc/gdm/custom.conf << 'EOF'
-[daemon]
-AutomaticLoginEnable=True
-AutomaticLogin=kiosk
+# Create kiosk session startup script in user's home
+cat > /var/home/kiosk/.profile << 'EOF'
+#!/bin/bash
+# Auto-start kiosk session when user logs in
+if [ "$XDG_SESSION_TYPE" = "wayland" ] || [ "$XDG_SESSION_TYPE" = "x11" ]; then
+    if [ -z "$KIOSK_STARTED" ]; then
+        export KIOSK_STARTED=1
+        /usr/local/bin/kiosk-session.sh &
+    fi
+fi
 EOF
 
-# Ensure systemd services are enabled
-systemctl enable gdm
-systemctl enable shutdown-timer.timer
-systemctl enable chronyd
+# Configure session environment for kiosk user
+cat > /var/home/kiosk/.config/environment.d/kiosk.conf << 'EOF'
+DISPLAY=:0
+KIOSK_URL_1=https://www.redhat.com
+KIOSK_URL_2=https://fedoraproject.org
+EOF
+
+# Set permissions and ownership for kiosk user files
+chmod +x /var/home/kiosk/.profile
+chown -R kiosk:kiosk /var/home/kiosk
+
+# Enable user lingering for kiosk user to start user services
+loginctl enable-linger kiosk || true
 
 %end
 

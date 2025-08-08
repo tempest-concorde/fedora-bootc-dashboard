@@ -15,6 +15,7 @@ RUN mkdir -p /var/home/kiosk/.config/autostart && \
 # Copy Firefox kiosk configuration to bootc home directory
 COPY firefox-kiosk.desktop /var/home/kiosk/.config/autostart/
 COPY firefox-kiosk.sh /usr/local/bin/
+COPY kiosk-session.sh /usr/local/bin/
 COPY user.js /var/home/kiosk/.mozilla/firefox/
 
 # Create systemd timer for automatic shutdown
@@ -22,10 +23,32 @@ COPY shutdown-timer.service /etc/systemd/system/
 COPY shutdown-timer.timer /etc/systemd/system/
 COPY shutdown.target /etc/systemd/system/
 
-# Note: first-boot setup handled by kickstart %post section
+# Copy Firefox systemd user service
+COPY firefox-kiosk.service /etc/systemd/user/
 
-# Set permissions for Firefox kiosk script
-RUN chmod +x /usr/local/bin/firefox-kiosk.sh
-# Note: kiosk user ownership and service enablement handled by kickstart
+# Copy system-level configurations
+COPY firefox-watchdog.sh /usr/local/bin/
+COPY firefox-watchdog.service /etc/systemd/system/
+COPY firefox-watchdog.timer /etc/systemd/system/
+
+# Copy GDM configuration
+COPY gdm-custom.conf /etc/gdm/custom.conf
+
+# Copy dconf configuration for login screen
+RUN mkdir -p /etc/dconf/db/gdm.d
+COPY 00-login-screen /etc/dconf/db/gdm.d/
+
+# Set permissions for scripts and enable services
+RUN chmod +x /usr/local/bin/firefox-kiosk.sh && \
+chmod +x /usr/local/bin/kiosk-session.sh && \
+chmod +x /usr/local/bin/firefox-watchdog.sh && \
+systemctl enable gdm && \
+systemctl enable shutdown-timer.timer && \
+systemctl enable chronyd && \
+systemctl enable firefox-watchdog.timer && \
+systemctl enable sshd && \
+dconf update
+
+# Note: kiosk user creation and home directory setup handled by kickstart
 
 RUN bootc container lint
