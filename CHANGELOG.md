@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.2.0 (2025-08-08)
+
+### Feature
+
+* feat: refactor and add features (#2)
+
+* feat: refactor and add features
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: wipe all disks
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`6244399`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/624439964e6af7dde299fd98c9f4f17229fe3b37))
+
 ## v0.1.0 (2025-08-08)
 
 ### Feature
