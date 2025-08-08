@@ -74,6 +74,7 @@ Using `direnv` or similar to manage the secrets is encouraged.
 - `shutdown-timer.timer`: Daily timer that triggers shutdown at 22:00
 - `shutdown-timer.service`: Service that executes system poweroff
 - `gdm.service`: Display manager with auto-login configured
+- `chronyd.service`: Time synchronization using chrony NTP client
 
 ## Firefox Configuration
 
@@ -100,3 +101,4 @@ The kiosk Firefox instance includes:
 4. The shutdown timer uses the system clock - ensure proper timezone configuration
 5. User configurations in `/var/home/kiosk/` persist across bootc updates
 6. Kickstart handles initial system setup including user creation and configuration
+7. Time synchronization is handled by chrony (chronyd service) which is ideal for systems that may be intermittently connected
