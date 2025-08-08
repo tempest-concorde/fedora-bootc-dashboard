@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.2.1 (2025-08-08)
+
+### Fix
+
+* fix: fixes (#3)
+
+* feat: add degbugging
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: fixes
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`270544a`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/270544ab02d52d27dab123745fc17a79992efb22))
+
 ## v0.2.0 (2025-08-08)
 
 ### Feature
