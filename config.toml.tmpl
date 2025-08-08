@@ -16,11 +16,8 @@ autopart --type=plain
 
 
 rootpw --lock
-group --name={{ env.Getenv "USERNAME" }} --gid=1000
-user --name {{ env.Getenv "USERNAME" }} --uid=1000 --gid=1000  --shell=/bin/bash --groups=wheel --password='{{ env.Getenv "PASSWORD_HASH" }}' --iscrypted
 group --name=kiosk --gid=1001
 user --name kiosk --uid=1001 --gid=1001 --shell=/bin/bash --homedir=/var/home/kiosk
-sshkey --username="{{ env.Getenv "USERNAME" }}" "{{ strings.TrimSpace (file.Read (env.Getenv "SSH_KEY_PATH")) }}"
 sshkey --username=root "{{ strings.TrimSpace (file.Read (env.Getenv "SSH_KEY_PATH")) }}"
 
 %post

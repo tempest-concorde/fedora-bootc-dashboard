@@ -46,13 +46,6 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
         registry: ${{ env.IMAGE_REGISTRY }}
         auth_file_path: /run/containers/0/auth.json
-    - name: Log in to registry.redhat.io
-      uses: redhat-actions/podman-login@v1
-      with:
-        username: ${{ secrets.RH_REGISTRY_USER }} # service account
-        password: ${{ secrets.RH_REGISTRY_PASSWORD }} # service accounts
-        registry: registry.redhat.io
-        auth_file_path: /run/containers/0/auth.json
 
     - name: Pull deps
       run: make get-deps
