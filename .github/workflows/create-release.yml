@@ -26,19 +26,6 @@ jobs:
       run: dnf -y install podman buildah skopeo make wget git
     - name: Checkout repository
       uses: actions/checkout@v4
-    - name: Access a subscription via activation key
-      env:
-        SMDEV_CONTAINER_OFF: 1
-        orgid: ${{ secrets.RHT_ORGID }}
-        activation_key: ${{ secrets.RHT_ACT_KEY }}
-
-      run: subscription-manager register --org=$orgid --activationkey=$activation_key
-    - name: Workaround open podman-login action issue
-      env:
-        auth: "{ \"auths\": {} }"
-      run: |
-        mkdir -p $HOME/.docker
-        echo $auth > $HOME/.docker/config.json
     - name: Log in to Quay.io
       uses: redhat-actions/podman-login@v1
       with:
