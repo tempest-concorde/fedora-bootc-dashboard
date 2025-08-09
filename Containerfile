@@ -3,7 +3,7 @@ FROM quay.io/fedora/fedora-bootc:42
 
 RUN dnf install -y gnome-shell gnome-kiosk gnome-kiosk-script-session \
 firefox unzip alsa-sof-firmware python python-pip gcc python-devel \
-xorg-x11-xinit gdm chrony at && \
+xorg-x11-xinit gdm chrony at podman && \
 dnf clean all
 
 # Note: kiosk user and GDM autologin configuration handled by kickstart
@@ -21,7 +21,6 @@ COPY user.js /var/home/kiosk/.mozilla/firefox/
 # Create systemd timer for automatic shutdown
 COPY shutdown-timer.service /etc/systemd/system/
 COPY shutdown-timer.timer /etc/systemd/system/
-COPY shutdown.target /etc/systemd/system/
 
 # Copy Firefox systemd user service
 COPY firefox-kiosk.service /etc/systemd/user/
@@ -45,6 +44,26 @@ COPY 00-login-screen /etc/dconf/db/gdm.d/
 RUN mkdir -p /etc/dconf/db/local.d
 COPY disable-screen-lock.conf /etc/dconf/db/local.d/
 
+# Create directories for monitoring configurations
+RUN mkdir -p /etc/containers/systemd && \
+    mkdir -p /etc/prometheus && \
+    mkdir -p /etc/grafana/provisioning/datasources && \
+    mkdir -p /etc/grafana/provisioning/dashboards && \
+    mkdir -p /etc/grafana/dashboards
+
+# Copy Quadlet configuration files for Prometheus and Grafana
+COPY prometheus.container /etc/containers/systemd/
+COPY grafana.container /etc/containers/systemd/
+COPY node-exporter.container /etc/containers/systemd/
+COPY monitoring.network /etc/containers/systemd/
+
+# Copy monitoring configuration files
+COPY prometheus.yml /etc/prometheus/
+COPY grafana.ini /etc/grafana/
+COPY datasources.yml /etc/grafana/provisioning/datasources/
+COPY dashboards.yml /etc/grafana/provisioning/dashboards/
+COPY system-dashboard.json /etc/grafana/dashboards/
+
 # Set permissions for scripts and enable services
 RUN chmod +x /usr/local/bin/firefox-kiosk.sh && \
 chmod +x /usr/local/bin/kiosk-session.sh && \
@@ -52,11 +71,13 @@ chmod +x /usr/local/bin/firefox-watchdog.sh && \
 chmod +x /usr/local/bin/kiosk-manager.sh && \
 chmod +x /usr/local/bin/kiosk-debug.sh && \
 systemctl enable gdm && \
-systemctl enable shutdown-timer.timer && \
 systemctl enable chronyd && \
 systemctl enable firefox-watchdog.timer && \
 systemctl enable kiosk-manager.service && \
 systemctl enable sshd && \
+systemctl enable prometheus.service && \
+systemctl enable grafana.service && \
+systemctl enable node-exporter.service && \
 dconf update
 
 # Note: kiosk user creation and home directory setup handled by kickstart
