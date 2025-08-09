@@ -18,10 +18,6 @@ COPY firefox-kiosk.sh /usr/local/bin/
 COPY kiosk-session.sh /usr/local/bin/
 COPY user.js /var/home/kiosk/.mozilla/firefox/
 
-# Create systemd timer for automatic shutdown
-COPY shutdown-timer.service /etc/systemd/system/
-COPY shutdown-timer.timer /etc/systemd/system/
-
 # Copy Firefox systemd user service
 COPY firefox-kiosk.service /etc/systemd/user/
 
