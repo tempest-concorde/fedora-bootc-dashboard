@@ -71,9 +71,6 @@ systemctl enable chronyd && \
 systemctl enable firefox-watchdog.timer && \
 systemctl enable kiosk-manager.service && \
 systemctl enable sshd && \
-systemctl enable prometheus.service && \
-systemctl enable grafana.service && \
-systemctl enable node-exporter.service && \
 dconf update
 
 # Note: kiosk user creation and home directory setup handled by kickstart
