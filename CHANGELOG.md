@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## v0.3.0 (2025-08-09)
+
+### Feature
+
+* feat: add grafana (#4)
+
+* feat: add grafana
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: correct lack shutdown service
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: remove uneeded services
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`378cf52`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/378cf52f6dbcbd64c2535347d2c3ad48cef8d09f))
+
 ## v0.2.1 (2025-08-08)
 
 ### Fix
