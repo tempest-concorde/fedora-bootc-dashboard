@@ -9,6 +9,7 @@ Image=docker.io/prom/node-exporter:latest
 ContainerName=node-exporter
 GlobalArgs=--storage-opt=additionalimagestore=/usr/lib/bootc/storage
 PublishPort=9100:9100
+Network=monitoring.network
 Volume=/proc:/host/proc:ro,rslave
 Volume=/sys:/host/sys:ro,rslave
 Volume=/:/rootfs:ro,rslave
