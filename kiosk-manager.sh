@@ -59,11 +59,19 @@ while true; do
     if ! check_firefox_running; then
         log "Firefox not running, attempting to start..."
         
-        # Try to start Firefox as kiosk user
+        # Resolve kiosk UID and runtime dir dynamically
+        KIOSK_UID=$(id -u kiosk 2>/dev/null || echo "")
+        if [ -z "$KIOSK_UID" ]; then
+            log "Failed to determine kiosk UID"
+            sleep 20
+            continue
+        fi
+        RUNTIME_DIR="/run/user/${KIOSK_UID}"
+        
+        # Try to start Firefox as kiosk user (DISPLAY may be set by session; do not force for Wayland)
         su - kiosk -c "
-            export DISPLAY=:0
-            export XDG_RUNTIME_DIR=/run/user/1001
-            /usr/local/bin/firefox-kiosk.sh > /var/log/kiosk-session.log 2>&1 &
+            export XDG_RUNTIME_DIR=${RUNTIME_DIR}
+            /usr/local/bin/firefox-kiosk.sh > /var/log/kiosk-session.log 2>&1 & disown
         " || log "Failed to start Firefox"
         
         # Give it time to start

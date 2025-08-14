@@ -12,24 +12,44 @@ if [ -n "${KIOSK_URL}" ] && [ "${KIOSK_URL}" != "https://www.redhat.com" ]; then
     KIOSK_URL_1="${KIOSK_URL}"
 fi
 
+# Detect session type (Wayland vs X11)
+SESSION_TYPE="${XDG_SESSION_TYPE:-}"
+if [ -z "$SESSION_TYPE" ] && [ -n "$WAYLAND_DISPLAY" ]; then
+    SESSION_TYPE="wayland"
+fi
+if [ -z "$SESSION_TYPE" ] && [ -n "$DISPLAY" ]; then
+    SESSION_TYPE="x11"
+fi
+
+# Prefer Wayland when available for Firefox
+if [ "$SESSION_TYPE" = "wayland" ]; then
+    export MOZ_ENABLE_WAYLAND=1
+fi
+
 # Wait for the desktop environment to be ready
 sleep 15
 
-# Ensure DISPLAY is set
-export DISPLAY="${DISPLAY:-:0}"
+# Ensure DISPLAY is set only for X11
+if [ "$SESSION_TYPE" != "wayland" ]; then
+    export DISPLAY="${DISPLAY:-:0}"
+fi
 
-# Wait for X server to be ready with timeout
-echo "Waiting for X server to be ready..."
-timeout=60
-while [ $timeout -gt 0 ] && ! xset q &>/dev/null; do
-    echo "X server not ready, waiting... ($timeout seconds left)"
-    sleep 2
-    timeout=$((timeout-2))
-done
+if [ "$SESSION_TYPE" != "wayland" ]; then
+    # Wait for X server to be ready with timeout
+    echo "Waiting for X server to be ready..."
+    timeout=60
+    while [ $timeout -gt 0 ] && ! xset q &>/dev/null; do
+        echo "X server not ready, waiting... ($timeout seconds left)"
+        sleep 2
+        timeout=$((timeout-2))
+    done
 
-if [ $timeout -le 0 ]; then
-    echo "ERROR: X server failed to start within 60 seconds"
-    exit 1
+    if [ $timeout -le 0 ]; then
+        echo "ERROR: X server failed to start within 60 seconds"
+        exit 1
+    fi
+else
+    echo "Wayland session detected; skipping X server readiness checks"
 fi
 
 # Wait for GNOME to be ready with timeout
@@ -50,10 +70,12 @@ fi
 echo "Desktop environment ready, waiting for full initialization..."
 sleep 10
 
-# Disable screen saver and power management
-xset s off
-xset s noblank
-xset -dpms
+# Disable screen saver and power management (X11 only)
+if [ "$SESSION_TYPE" != "wayland" ]; then
+    xset s off
+    xset s noblank
+    xset -dpms
+fi
 
 # Create Firefox profile if it doesn't exist (bootc uses /var/home/)
 PROFILE_DIR="/var/home/kiosk/.mozilla/firefox/kiosk-profile"
