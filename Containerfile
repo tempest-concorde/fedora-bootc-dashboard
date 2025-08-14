@@ -14,6 +14,7 @@ RUN mkdir -p /var/home/kiosk/.config/autostart && \
 
 # Copy Firefox kiosk configuration to bootc home directory
 COPY firefox-kiosk.desktop /var/home/kiosk/.config/autostart/
+COPY firefox-kiosk.desktop /etc/xdg/autostart/
 COPY firefox-kiosk.sh /usr/local/bin/
 COPY kiosk-session.sh /usr/local/bin/
 COPY user.js /var/home/kiosk/.mozilla/firefox/
