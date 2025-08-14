@@ -11,6 +11,7 @@ GlobalArgs=--storage-opt=additionalimagestore=/usr/lib/bootc/storage
 PublishPort=9090:9090
 Volume=prometheus-data:/prometheus:Z
 Volume=/etc/prometheus:/etc/prometheus:ro,Z
+Network=monitoring.network
 # Add necessary command line arguments for Prometheus
 Exec=--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.console.libraries=/etc/prometheus/console_libraries --web.console.templates=/etc/prometheus/consoles --web.enable-lifecycle --web.external-url=http://localhost:9090
 PodmanArgs=--userns=keep-id --memory=4096m

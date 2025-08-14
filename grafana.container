@@ -11,6 +11,7 @@ GlobalArgs=--storage-opt=additionalimagestore=/usr/lib/bootc/storage
 PublishPort=3000:3000
 Volume=grafana-data:/var/lib/grafana:Z
 Volume=/etc/grafana:/etc/grafana:ro,Z
+Network=monitoring.network
 Environment=GF_SECURITY_ADMIN_PASSWORD=admin
 Environment=GF_INSTALL_PLUGINS=
 PodmanArgs=--userns=keep-id --memory=512m
