@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.4.1 (2025-08-14)
+
+### Fix
+
+* fix: allow for wayland (#6)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`4cb7d32`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/4cb7d3289456173c5e445bfc7bea785ddfda3104))
+
 ## v0.4.0 (2025-08-11)
 
 ### Feature
