@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.4.3 (2025-08-31)
+
+### Fix
+
+* fix: correct dashboard (#8)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`fcc8c8d`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/fcc8c8d7552df0244772b1f4e4b50d77ab9e8c7a))
+
 ## v0.4.2 (2025-08-14)
 
 ### Fix
