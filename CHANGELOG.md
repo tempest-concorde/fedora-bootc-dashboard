@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## v0.5.0 (2025-09-01)
+
+### Feature
+
+* feat: add tailscale (#9)
+
+* feat: add tailscale
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: correct dashboard
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: correct dnf
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: correct dnf
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`aaaded8`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/aaaded83a2f378eaa9cde8099545e33ea00921f9))
+
 ## v0.4.3 (2025-08-31)
 
 ### Fix
