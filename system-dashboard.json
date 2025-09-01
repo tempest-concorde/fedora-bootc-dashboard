@@ -1,5 +1,6 @@
 {
   "id": null,
+  "uid": "system-dashboard",
   "title": "Bootc Dashboard System Monitoring",
   "tags": ["system", "monitoring"],
   "style": "dark",

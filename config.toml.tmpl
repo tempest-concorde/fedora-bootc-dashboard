@@ -30,6 +30,14 @@ cat > /etc/ostree/auth.json << 'EOF'
 {{ file.Read (env.Getenv "DOCKER_AUTH_PATH") }}
 EOF
 
+# Setup Tailscale authentication and start service
+if [ -n "{{ env.Getenv "TAILSCALE_AUTH_KEY" }}" ]; then
+    echo "Setting up Tailscale..."
+    systemctl start tailscaled
+    sleep 5
+    tailscale up --authkey="{{ env.Getenv "TAILSCALE_AUTH_KEY" }}" --accept-routes --accept-dns=false --hostname="$(hostname)"
+fi
+
 # Setup kiosk user home directory and permissions
 mkdir -p /var/home/kiosk/.config/autostart
 mkdir -p /var/home/kiosk/.mozilla/firefox
@@ -51,7 +59,7 @@ EOF
 # Configure session environment for kiosk user
 cat > /var/home/kiosk/.config/environment.d/kiosk.conf << 'EOF'
 DISPLAY=:0
-KIOSK_URL_1=http://localhost:3000
+KIOSK_URL_1=http://localhost:3000/d/system-dashboard/bootc-dashboard-system-monitoring
 KIOSK_URL_2=http://localhost:9090
 EOF
 

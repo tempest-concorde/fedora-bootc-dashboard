@@ -4,11 +4,11 @@
 # This script launches Firefox in kiosk mode with two tabs
 
 # Default webpages - can be overridden by environment variables
-KIOSK_URL_1="${KIOSK_URL_1:-https://www.redhat.com}"
-KIOSK_URL_2="${KIOSK_URL_2:-https://fedoraproject.org}"
+KIOSK_URL_1="${KIOSK_URL_1:-http://localhost:3000/d/system-dashboard/bootc-dashboard-system-monitoring}"
+KIOSK_URL_2="${KIOSK_URL_2:-http://localhost:9090}"
 
 # For backward compatibility, if KIOSK_URL is set, use it as the first tab
-if [ -n "${KIOSK_URL}" ] && [ "${KIOSK_URL}" != "https://www.redhat.com" ]; then
+if [ -n "${KIOSK_URL}" ] && [ "${KIOSK_URL}" != "http://localhost:3000/d/system-dashboard/bootc-dashboard-system-monitoring" ]; then
     KIOSK_URL_1="${KIOSK_URL}"
 fi
 

@@ -5,8 +5,8 @@
 
 # Set environment
 export DISPLAY=:0
-export KIOSK_URL_1="${KIOSK_URL_1:-https://www.redhat.com}"
-export KIOSK_URL_2="${KIOSK_URL_2:-https://fedoraproject.org}"
+export KIOSK_URL_1="${KIOSK_URL_1:-http://localhost:3000/d/system-dashboard/bootc-dashboard-system-monitoring}"
+export KIOSK_URL_2="${KIOSK_URL_2:-http://localhost:9090}"
 
 # Log startup
 echo "$(date): Kiosk session starting" >> /var/log/kiosk-session.log
