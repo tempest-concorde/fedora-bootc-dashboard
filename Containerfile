@@ -1,8 +1,9 @@
 FROM quay.io/fedora/fedora-bootc:42
 # Install packages for Firefox kiosk setup
 
-# Add Tailscale repository
-RUN dnf config-manager addrepo --from-repofile=https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+# Add Tailscale repository (dnf5 syntax)
+RUN dnf install -y 'dnf5-command(config-manager)' && \
+    dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
 RUN dnf install -y gnome-shell gnome-kiosk gnome-kiosk-script-session \
 firefox unzip alsa-sof-firmware python python-pip gcc python-devel \
 xorg-x11-xinit gdm chrony at podman tailscale curl jq && \
