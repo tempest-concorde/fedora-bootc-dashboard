@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.6.0 (2025-09-02)
+
+### Feature
+
+* feat: update dashboards (#10)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`63b4e0b`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/63b4e0bdd97eadf0b12a4da5e92780f2a7c9dd52))
+
 ## v0.5.0 (2025-09-01)
 
 ### Feature
