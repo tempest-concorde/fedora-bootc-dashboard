@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.8.0 (2025-09-02)
+
+### Feature
+
+* feat: remove containerfile
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`59ca129`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/59ca129e7c1b25eb8fc5f065c4b280b41ad4f160))
+
 ## v0.7.0 (2025-09-02)
 
 ### Feature
