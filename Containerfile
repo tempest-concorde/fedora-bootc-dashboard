@@ -50,10 +50,11 @@ RUN mkdir -p /etc/containers/systemd && \
     mkdir -p /etc/grafana/provisioning/dashboards && \
     mkdir -p /etc/grafana/dashboards
 
-# Copy Quadlet configuration files for Prometheus and Grafana
+# Copy Quadlet configuration files for monitoring stack
 COPY prometheus.container /etc/containers/systemd/
 COPY grafana.container /etc/containers/systemd/
 COPY node-exporter.container /etc/containers/systemd/
+COPY cadvisor.container /etc/containers/systemd/
 COPY monitoring.network /etc/containers/systemd/
 
 # Copy monitoring configuration files
