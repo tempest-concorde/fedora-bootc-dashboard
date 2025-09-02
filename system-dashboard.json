@@ -81,8 +81,8 @@
       "type": "timeseries",
       "targets": [
         {
-          "expr": "(node_filesystem_size_bytes - node_filesystem_free_bytes) / node_filesystem_size_bytes * 100",
-          "legendFormat": "{{mountpoint}} - {{device}}",
+          "expr": "(node_filesystem_size_bytes{fstype!~\"tmpfs|fuse.lxcfs|squashfs|overlay\",mountpoint!~\"/boot.*|/run.*|/sys.*|/proc.*|/dev.*|/var/lib/docker.*|/var/lib/containers.*\"} - node_filesystem_free_bytes{fstype!~\"tmpfs|fuse.lxcfs|squashfs|overlay\",mountpoint!~\"/boot.*|/run.*|/sys.*|/proc.*|/dev.*|/var/lib/docker.*|/var/lib/containers.*\"}) / node_filesystem_size_bytes{fstype!~\"tmpfs|fuse.lxcfs|squashfs|overlay\",mountpoint!~\"/boot.*|/run.*|/sys.*|/proc.*|/dev.*|/var/lib/docker.*|/var/lib/containers.*\"} * 100",
+          "legendFormat": "{{mountpoint}} ({{device}})",
           "refId": "A"
         }
       ],
@@ -106,8 +106,8 @@
       "type": "stat",
       "targets": [
         {
-          "expr": "node_filesystem_free_bytes{fstype!=\"tmpfs\"}",
-          "legendFormat": "{{mountpoint}}",
+          "expr": "node_filesystem_free_bytes{fstype!~\"tmpfs|fuse.lxcfs|squashfs|overlay\",mountpoint!~\"/boot.*|/run.*|/sys.*|/proc.*|/dev.*|/var/lib/docker.*|/var/lib/containers.*\"}",
+          "legendFormat": "{{mountpoint}} ({{device}})",
           "refId": "A"
         }
       ],
@@ -378,6 +378,73 @@
         "w": 8,
         "x": 16,
         "y": 28
+      }
+    },
+    {
+      "id": 15,
+      "title": "Disk I/O Rate",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(node_disk_read_bytes_total[5m])",
+          "legendFormat": "{{device}} - Read",
+          "refId": "A"
+        },
+        {
+          "expr": "rate(node_disk_written_bytes_total[5m])",
+          "legendFormat": "{{device}} - Write",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "Bps"
+        }
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 34
+      }
+    },
+    {
+      "id": 16,
+      "title": "Disk Usage Summary",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "(node_filesystem_size_bytes{fstype!~\"tmpfs|fuse.lxcfs|squashfs|overlay\",mountpoint=\"/\"} - node_filesystem_free_bytes{fstype!~\"tmpfs|fuse.lxcfs|squashfs|overlay\",mountpoint=\"/\"}) / node_filesystem_size_bytes{fstype!~\"tmpfs|fuse.lxcfs|squashfs|overlay\",mountpoint=\"/\"} * 100",
+          "legendFormat": "Root Filesystem Usage",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 75
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 34
       }
     }
   ],
