@@ -54,7 +54,6 @@ RUN mkdir -p /etc/containers/systemd && \
 COPY prometheus.container /etc/containers/systemd/
 COPY grafana.container /etc/containers/systemd/
 COPY node-exporter.container /etc/containers/systemd/
-COPY cadvisor.container /etc/containers/systemd/
 COPY monitoring.network /etc/containers/systemd/
 
 # Copy monitoring configuration files
