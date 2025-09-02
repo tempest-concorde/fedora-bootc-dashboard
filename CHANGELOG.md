@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.7.0 (2025-09-02)
+
+### Feature
+
+* feat: update node exporter (#11)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`17f405d`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/17f405d06b946c8b04fe8b721b3d20bf2915dbc5))
+
 ## v0.6.0 (2025-09-02)
 
 ### Feature
