@@ -5,7 +5,8 @@ FROM quay.io/fedora/fedora-bootc:42
 RUN curl -fsSL https://pkgs.tailscale.com/stable/fedora/tailscale.repo -o /etc/yum.repos.d/tailscale.repo
 RUN dnf install -y gnome-shell gnome-kiosk gnome-kiosk-script-session \
 firefox unzip alsa-sof-firmware python python-pip gcc python-devel \
-xorg-x11-xinit gdm chrony at podman tailscale curl jq && \
+xorg-x11-xinit gdm chrony at podman tailscale curl jq \
+pciutils usbutils aircrack-ng && \
 dnf clean all
 
 # Note: kiosk user and GDM autologin configuration handled by kickstart
