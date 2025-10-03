@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.9.0 (2025-10-03)
+
+### Feature
+
+* feat: add usb utilities (#12)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`245df17`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/245df1731a12b825c1201ac6b5f7211a4e2e357b))
+
 ## v0.8.0 (2025-09-02)
 
 ### Feature
