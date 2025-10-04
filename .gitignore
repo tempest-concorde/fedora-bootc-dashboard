@@ -211,3 +211,4 @@ config.toml
 .envrc
 docker-auth.json
 direnv
+output
