@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.9.1 (2025-10-04)
+
+### Fix
+
+* fix: add tmux
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`d8e3072`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/d8e30723a2d2e1018d0fe8df2200b22e8d2bb6d6))
+
 ## v0.9.0 (2025-10-03)
 
 ### Feature
