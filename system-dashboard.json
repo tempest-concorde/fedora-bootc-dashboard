@@ -186,12 +186,12 @@
     },
     {
       "id": 8,
-      "title": "Grafana Status",
+      "title": "Perses Status",
       "type": "stat",
       "targets": [
         {
-          "expr": "up{job=\"grafana\"}",
-          "legendFormat": "Grafana Up",
+          "expr": "up{job=\"perses\"}",
+          "legendFormat": "Perses Up",
           "refId": "A"
         }
       ],
@@ -217,31 +217,8 @@
       },
       "gridPos": {
         "h": 6,
-        "w": 6,
+        "w": 12,
         "x": 12,
-        "y": 14
-      }
-    },
-    {
-      "id": 9,
-      "title": "Grafana Active Sessions",
-      "type": "stat",
-      "targets": [
-        {
-          "expr": "grafana_stat_totals_dashboard",
-          "legendFormat": "Dashboards",
-          "refId": "A"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short"
-        }
-      },
-      "gridPos": {
-        "h": 6,
-        "w": 6,
-        "x": 18,
         "y": 14
       }
     },
@@ -251,12 +228,12 @@
       "type": "timeseries",
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{name=~\"prometheus|grafana|node-exporter\"}",
+          "expr": "container_memory_usage_bytes{name=~\"prometheus|perses|node-exporter\"}",
           "legendFormat": "{{name}} - Used",
           "refId": "A"
         },
         {
-          "expr": "container_spec_memory_limit_bytes{name=~\"prometheus|grafana|node-exporter\"}",
+          "expr": "container_spec_memory_limit_bytes{name=~\"prometheus|perses|node-exporter\"}",
           "legendFormat": "{{name}} - Limit",
           "refId": "B"
         }
@@ -279,7 +256,7 @@
       "type": "timeseries",
       "targets": [
         {
-          "expr": "rate(container_cpu_usage_seconds_total{name=~\"prometheus|grafana|node-exporter\"}[5m]) * 100",
+          "expr": "rate(container_cpu_usage_seconds_total{name=~\"prometheus|perses|node-exporter\"}[5m]) * 100",
           "legendFormat": "{{name}} CPU %",
           "refId": "A"
         }
@@ -302,7 +279,7 @@
       "type": "stat",
       "targets": [
         {
-          "expr": "container_last_seen{name=~\"prometheus|grafana|node-exporter\"}",
+          "expr": "container_last_seen{name=~\"prometheus|perses|node-exporter\"}",
           "legendFormat": "{{name}} Last Seen",
           "refId": "A"
         }

@@ -46,23 +46,16 @@ COPY disable-screen-lock.conf /etc/dconf/db/local.d/
 
 # Create directories for monitoring configurations
 RUN mkdir -p /etc/containers/systemd && \
-    mkdir -p /etc/prometheus && \
-    mkdir -p /etc/grafana/provisioning/datasources && \
-    mkdir -p /etc/grafana/provisioning/dashboards && \
-    mkdir -p /etc/grafana/dashboards
+    mkdir -p /etc/prometheus
 
 # Copy Quadlet configuration files for monitoring stack
 COPY prometheus.container /etc/containers/systemd/
-COPY grafana.container /etc/containers/systemd/
+COPY perses.container /etc/containers/systemd/
 COPY node-exporter.container /etc/containers/systemd/
 COPY monitoring.network /etc/containers/systemd/
 
 # Copy monitoring configuration files
 COPY prometheus.yml /etc/prometheus/
-COPY grafana.ini /etc/grafana/
-COPY datasources.yml /etc/grafana/provisioning/datasources/
-COPY dashboards.yml /etc/grafana/provisioning/dashboards/
-COPY system-dashboard.json /etc/grafana/dashboards/
 
 # Set permissions for scripts and enable services
 RUN chmod +x /usr/local/bin/firefox-kiosk.sh && \
