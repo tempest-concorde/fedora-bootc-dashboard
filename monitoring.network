@@ -1,5 +1,5 @@
 [Unit]
-Description=Monitoring network for Prometheus and Grafana
+Description=Monitoring network for Prometheus and Perses
 Documentation=man:podman-systemd.unit(5)
 
 [Network]
