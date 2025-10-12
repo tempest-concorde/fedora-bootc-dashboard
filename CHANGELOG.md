@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.9.2 (2025-10-12)
+
+### Fix
+
+* fix: update perses (#13)
+
+* fix: update perces
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: add missing files
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`4c00d57`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/4c00d57f35785f3fa29edd6c5e6041f0b6cdfa10))
+
 ## v0.9.1 (2025-10-04)
 
 ### Fix
