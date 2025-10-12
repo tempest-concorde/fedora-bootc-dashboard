@@ -1,0 +1,23 @@
+[Unit]
+Description=Perses Dashboard
+Wants=network-online.target
+After=network-online.target
+RequiresMountsFor=%t/containers
+
+[Container]
+Image=persesdev/perces:latest
+ContainerName=perses
+GlobalArgs=--storage-opt=additionalimagestore=/usr/lib/bootc/storage
+PublishPort=8080:8080
+Volume=perses-data:/var/perses:Z
+Network=monitoring.network
+Environment=PERSES_DATABASE_FILE=/var/perses/perses.db
+PodmanArgs=--userns=keep-id --memory=512m
+
+[Service]
+Restart=always
+TimeoutStartSec=900
+
+[Install]
+WantedBy=multi-user.target
+
