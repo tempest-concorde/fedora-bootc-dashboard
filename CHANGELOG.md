@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v0.10.0 (2025-10-12)
+
+### Feature
+
+* feat: add Home Assistant metrics scraping via HTTPS (#14)
+
+- Add homeassistant job to Prometheus configuration
+- Configure HTTPS scheme with TLS skip verify for Tailscale
+- Scrape metrics from homeassistant.story-beta.ts.net:443
+- Use /api/prometheus endpoint for Home Assistant metrics ([`a4c4d72`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/a4c4d7250930762b68e7e7905251c0073f7c0c18))
+
 ## v0.9.2 (2025-10-12)
 
 ### Fix
