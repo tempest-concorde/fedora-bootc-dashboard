@@ -25,6 +25,9 @@ scrape_configs:
     metrics_path: '/metrics'
     scrape_interval: 15s
   - job_name: 'homeassistant'
+    scheme: https
+    tls_config:
+      insecure_skip_verify: true
     static_configs:
       - targets: ['homeassistant.story-beta.ts.net:443']
     scrape_interval: 15s
