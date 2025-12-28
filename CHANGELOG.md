@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.10.1 (2025-12-28)
+
+### Fix
+
+* fix: simplify prometheus service (#15)
+
+* fix: simplify prometheus service
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* feat: update to fedora 43
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`21ce036`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/21ce036635e3a6c3f1f6c9a76071a605de2fa8be))
+
 ## v0.10.0 (2025-10-12)
 
 ### Feature
