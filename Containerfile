@@ -1,4 +1,4 @@
-FROM quay.io/fedora/fedora-bootc:42
+FROM quay.io/fedora/fedora-bootc:43
 # Install packages for Firefox kiosk setup
 
 # Add Tailscale repository (direct download for dnf5 compatibility)
