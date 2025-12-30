@@ -34,3 +34,10 @@ scrape_configs:
     scrape_timeout: 10s
     metrics_path: '/api/prometheus'
     honor_labels: false
+
+  - job_name: 'unifi-poller'
+    static_configs:
+      - targets: ['unifi-poller:9130']
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    metrics_path: '/metrics'

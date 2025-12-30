@@ -46,16 +46,19 @@ COPY disable-screen-lock.conf /etc/dconf/db/local.d/
 
 # Create directories for monitoring configurations
 RUN mkdir -p /etc/containers/systemd && \
-    mkdir -p /etc/prometheus
+    mkdir -p /etc/prometheus && \
+    mkdir -p /etc/unifi-poller
 
 # Copy Quadlet configuration files for monitoring stack
 COPY prometheus.container /etc/containers/systemd/
 COPY perses.container /etc/containers/systemd/
 COPY node-exporter.container /etc/containers/systemd/
+COPY unifi-poller.container /etc/containers/systemd/
 COPY monitoring.network /etc/containers/systemd/
 
 # Copy monitoring configuration files
 COPY prometheus.yml /etc/prometheus/
+COPY unifi-poller.conf /etc/unifi-poller/up.conf
 
 # Set permissions for scripts and enable services
 RUN chmod +x /usr/local/bin/firefox-kiosk.sh && \
