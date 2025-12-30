@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.11.0 (2025-12-30)
+
+### Feature
+
+* feat: add upoller (#16)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`7a4cffc`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/7a4cffcec70546a5b7832f62c20e13e9fed65f34))
+
 ## v0.10.1 (2025-12-28)
 
 ### Fix
