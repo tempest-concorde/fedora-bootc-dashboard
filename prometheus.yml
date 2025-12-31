@@ -41,3 +41,10 @@ scrape_configs:
     scrape_interval: 30s
     scrape_timeout: 10s
     metrics_path: '/metrics'
+
+  - job_name: 'yfinancer'
+    static_configs:
+      - targets: ['yfinancer:9101']
+    scrape_interval: 60s
+    scrape_timeout: 10s
+    metrics_path: '/metrics'
