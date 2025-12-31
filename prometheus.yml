@@ -14,6 +14,11 @@ scrape_configs:
   - job_name: 'node-exporter'
     static_configs:
       - targets: ['node-exporter:9100']
+        labels:
+          host: 'bootc'
+      - targets: ['nas:9100']
+        labels:
+          host: 'nas'
     scrape_interval: 15s
     scrape_timeout: 10s
     metrics_path: '/metrics'
