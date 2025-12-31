@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.12.0 (2025-12-31)
+
+### Feature
+
+* feat: add yfinancer services (#17)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`34fb5e5`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/34fb5e5efd3d98e5e418ed0a5f3e5c7197deb36f))
+
 ## v0.11.0 (2025-12-30)
 
 ### Feature
