@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.12.1 (2026-01-01)
+
+### Fix
+
+* fix: add nas prometheus config (#18)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`e267ecd`](https://github.com/tempest-concorde/fedora-bootc-dashboard/commit/e267ecdde36d7346d174b04babe2c376353d8e86))
+
 ## v0.12.0 (2025-12-31)
 
 ### Feature
